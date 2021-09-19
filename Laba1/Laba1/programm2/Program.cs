@@ -13,27 +13,26 @@ namespace ConsoleApp1
     
     class Program
     {
-        private static Student[] _students = new Student[5];
-
         static void Main(string[] args)
         {  
+            Student[] _students = new Student[3];
             _students[0].Name ="Maksim";
             _students[0].Family = "Vyalmisov";
             _students[0].Birthday = 2003;
             _students[0].Course = 2;
             _students[0].Group = "20VV1";
             
-            _students[0].Name ="Pavel";
-            _students[0].Family = "Ivkin";
-            _students[0].Birthday = 2002;
-            _students[0].Course = 2;
-            _students[0].Group = "20VO1";
+            _students[1].Name ="Pavel";
+            _students[1].Family = "Ivkin";
+            _students[1].Birthday = 2002;
+            _students[1].Course = 2;
+            _students[1].Group = "20VO1";
 
-            _students[0].Name ="lol";
-            _students[0].Family = "kek";
-            _students[0].Birthday = 1;
-            _students[0].Course = 0;
-            _students[0].Group = "____";
+            _students[2].Name ="lol";
+            _students[2].Family = "kek";
+            _students[2].Birthday = 1;
+            _students[2].Course = 0;
+            _students[2].Group = "____";
             
             Console.Write("Enter name: ");
             string enteredName = Console.ReadLine();
