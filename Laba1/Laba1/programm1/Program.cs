@@ -23,7 +23,7 @@ namespace programm1
                 {
                     for (int j = 0; j < y; j++)
                     {
-                        arr[i,j] = rnd.Next(10);
+                        arr[i,j] = rnd.Next(20) - 10;
                     }
                 }
                 
