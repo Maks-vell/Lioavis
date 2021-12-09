@@ -1,5 +1,0 @@
-﻿  Source1.c
-D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2\Laba2\Laba2\Source1.c(107,21): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2\Laba2\Laba2\Source1.c(114,21): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-Source1.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
-  Laba2.vcxproj -> D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2\Laba2\Debug\Laba2.exe

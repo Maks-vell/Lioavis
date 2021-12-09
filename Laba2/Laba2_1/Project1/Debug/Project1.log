@@ -1,6 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Source.c
-D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2_1\Project1\Source.c(18,18): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2_1\Project1\Source.c(28,18): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-Source.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
-  Project1.vcxproj -> D:\Ucheba\Semestr_3\LiOAVIS\Laba2\Laba2_1\Debug\Laba2_1.exe
