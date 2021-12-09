@@ -100,7 +100,7 @@ namespace Laba_
             List<int> resultList = _myMatrixGraph.BreadthFirstSearch();
             sw.Stop();
             TimeSpan timeSpan = sw.Elapsed;
-            Console.WriteLine(timeSpan.Ticks);
+            Console.WriteLine("Time: " + timeSpan.Ticks);
 
             foreach (var el in resultList)
             {
@@ -123,7 +123,7 @@ namespace Laba_
             resultList = _myMatrixGraph.MyBreadthFirstSearch();
             sw.Stop();
             timeSpan = sw.Elapsed;
-            Console.WriteLine(timeSpan.Ticks);
+            Console.WriteLine("Time: " + timeSpan.Ticks);
 
             foreach (var el in resultList)
             {

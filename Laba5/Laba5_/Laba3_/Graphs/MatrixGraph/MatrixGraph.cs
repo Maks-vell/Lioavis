@@ -121,6 +121,7 @@ namespace Laba_.Graphs
         public List<int> BreadthFirstSearch()
         {
             _walkedList = new bool[_size];
+            _walkList.Clear();
             for (int i = 0; i < _size; i++)
             {
                 if (!_walkedList[i])
@@ -156,6 +157,7 @@ namespace Laba_.Graphs
         public List<int> MyBreadthFirstSearch()
         {
             _walkedList = new bool[_size];
+            _walkList.Clear();
             for (int i = 0; i < _size; i++)
             {
                 if (!_walkedList[i])

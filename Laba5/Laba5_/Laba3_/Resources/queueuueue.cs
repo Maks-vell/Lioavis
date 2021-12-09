@@ -8,7 +8,7 @@ namespace Laba_.Resources
         private List<int> _list;
 
         public queueuueue()
-        {
+        { 
             _list = new List<int>();
         }
 
@@ -30,7 +30,7 @@ namespace Laba_.Resources
             {
                 return -1;
             }
-
+            
             int retValue = _list[0];
             _list.RemoveAt(0);
             return retValue;
