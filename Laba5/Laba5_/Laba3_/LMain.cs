@@ -25,30 +25,12 @@ namespace Laba_
                         consoleProgram.CreateGrahs();
                         break;
                     case 2:
-                        consoleProgram.VertexContraction();
-                        break;
-                    case 3:
-                        consoleProgram.SplitVertex();
-                        break;
-                    case 4:
-                        consoleProgram.UnionGraphs();
-                        break;
-                    case 5:
-                        consoleProgram.CrossingGraphs();
-                        break;
-                    case 6:
-                        consoleProgram.AnnularSum();
-                        break;
-                    case 7:
-                        consoleProgram.DecartSum();
-                        break;
-                    case 8:
                         consoleProgram.DeepWalk();
                         break;
-                    case 9:
+                    case 3:
                         consoleProgram.DeepWalkNonRecurcive();
                         break;
-                    case 10:
+                    case 4:
                         consoleProgram.UnderBreadthFirstSearch();
                         break;
                     default:

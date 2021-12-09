@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Laba_.Resources;
 
 namespace Laba_.Graphs
 {
@@ -9,7 +10,7 @@ namespace Laba_.Graphs
 
         private int _size;
 
-        private List<int> _WalkList = new List<int>();
+        private List<int> _walkList = new List<int>();
 
         private bool[] _walkedList;
 
@@ -53,130 +54,19 @@ namespace Laba_.Graphs
             }
         }
 
-        public void VertexContraction(int v1, int v2)
-        {
-            if (v1 == v2) return;
-
-            int v1Index = v1 - 1;
-            int v2Index = v2 - 1;
-            int[,] newMatrix = new int[_size - 1, _size - 1];
-
-            if (_matrix[v1Index, v2Index] == 1) //создание петли
-            {
-                _matrix[v1Index, v1Index] = 1;
-            }
-
-            for (int i = 0; i < _size; i++) // прикрепили все связи к одной вершине
-            {
-                if (_matrix[v1Index, i] == 0)
-                {
-                    _matrix[v1Index, i] += _matrix[v2Index, i];
-                }
-
-                if (_matrix[i, v1Index] == 0)
-                {
-                    _matrix[i, v1Index] = _matrix[i, v2Index];
-                }
-            }
-
-            for (int i = 0; i < v2Index; i++) //удалили ребро и перезаписали матрицу
-            {
-                for (int j = 0; j < _size; j++)
-                {
-                    if (j < v2Index)
-                    {
-                        newMatrix[i, j] = _matrix[i, j];
-                    }
-                    else if (j > v2Index)
-                    {
-                        newMatrix[i, j - 1] = _matrix[i, j];
-                    }
-                }
-            }
-
-            for (int i = v2Index + 1; i < _size; i++)
-            {
-                for (int j = 0; j < _size; j++)
-                {
-                    if (j < v2Index)
-                    {
-                        newMatrix[i - 1, j] = _matrix[i, j];
-                    }
-
-                    if (j > v2Index)
-                    {
-                        newMatrix[i - 1, j - 1] = _matrix[i, j];
-                    }
-                }
-            }
-
-            _matrix = newMatrix;
-            _size--;
-        }
-
-        public void SplitVertex(int v1)
-        {
-            v1--;
-            int[,] newMatrix = new int[_size + 1, _size + 1];
-
-            for (int i = 0; i <= v1; i++) //перезаписали матрицу с добавлением новой вершины
-            {
-                for (int j = 0; j < _size; j++)
-                {
-                    if (j <= v1)
-                    {
-                        newMatrix[i, j] = _matrix[i, j];
-                    }
-
-                    if (j > v1)
-                    {
-                        newMatrix[i, j + 1] = _matrix[i, j];
-                    }
-                }
-            }
-
-            for (int i = v1 + 1; i < _size; i++)
-            {
-                for (int j = 0; j < _size; j++)
-                {
-                    if (j <= v1)
-                    {
-                        newMatrix[i + 1, j] = _matrix[i, j];
-                    }
-
-                    if (j > v1)
-                    {
-                        newMatrix[i + 1, j + 1] = _matrix[i, j];
-                    }
-                }
-            }
-
-            _matrix = newMatrix;
-            _size++;
-
-            for (int i = 0; i < _size; i++) //скопировали в новую вершину связи
-            {
-                _matrix[i, v1 + 1] = _matrix[i, v1];
-                _matrix[v1 + 1, i] = _matrix[v1, i];
-            }
-
-            _matrix[v1, v1 + 1] = 1;
-            _matrix[v1 + 1, v1] = 1;
-        }
-
         public List<int> DeepWalk()
         {
             _walkedList = new bool[_size];
 
             Walk(0);
 
-            return _WalkList;
+            return _walkList;
         }
 
         private void Walk(int v)
         {
             _walkedList[v] = true;
-            _WalkList.Add(v + 1);
+            _walkList.Add(v + 1);
             for (int i = 0; i < _size; i++)
             {
                 if (_matrix[v, i] == 1 && !_walkedList[i])
@@ -189,18 +79,18 @@ namespace Laba_.Graphs
         public List<int> DeepWalkNonRecursive()
         {
             _savedV = new List<int>();
-            _WalkList = new List<int>();
+            _walkList = new List<int>();
             _walkedList = new bool[_size];
 
             NonRecursiveWalk();
 
-            return _WalkList;
+            return _walkList;
         }
 
         private void NonRecursiveWalk()
         {
             _savedV.Add(0);
-            _WalkList.Add(1);
+            _walkList.Add(1);
             _walkedList[0] = true;
 
             for (int i = 0; i < _size; i++)
@@ -214,7 +104,7 @@ namespace Laba_.Graphs
                 {
                     _savedV.Add(i);
                     _walkedList[i] = true;
-                    _WalkList.Add(i + 1);
+                    _walkList.Add(i + 1);
                     i = 0;
                 }
 
@@ -231,14 +121,14 @@ namespace Laba_.Graphs
         public List<int> BreadthFirstSearch()
         {
             _walkedList = new bool[_size];
-            for (int i = 0; _size > 0; i++)
+            for (int i = 0; i < _size; i++)
             {
                 if (!_walkedList[i])
                 {
                     UnderBreadthFirstSearch(i);
                 }
             }
-            return _WalkList;
+            return _walkList;
         }
 
         private void UnderBreadthFirstSearch(int v) 
@@ -251,13 +141,48 @@ namespace Laba_.Graphs
             while(queue.Count > 0)
             {
                 v = queue.Dequeue();
-                _WalkList.Add(v);
+                _walkList.Add(v);
                 for(int i = 0; i < _size; i++)
                 {
                     if(_matrix[v,i] == 1 && !_walkedList[i])
                     {
                         queue.Enqueue(i);
-                        _walkedList[v] = false;
+                        _walkedList[v] = true;
+                    }
+                }
+            }
+        }
+
+        public List<int> MyBreadthFirstSearch()
+        {
+            _walkedList = new bool[_size];
+            for (int i = 0; i < _size; i++)
+            {
+                if (!_walkedList[i])
+                {
+                    UnderBreadthFirstSearch(i);
+                }
+            }
+            return _walkList;
+        }
+
+        private void MyUnderBreadthFirstSearch(int v)
+        {
+            queueuueue queue = new queueuueue();
+
+            queue.Push(v);
+            _walkedList[v] = true;
+
+            while (queue.Count > 0)
+            {
+                v = queue.Pop();
+                _walkList.Add(v);
+                for (int i = 0; i < _size; i++)
+                {
+                    if (_matrix[v, i] == 1 && !_walkedList[i])
+                    {
+                        queue.Push(i);
+                        _walkedList[v] = true;
                     }
                 }
             }
