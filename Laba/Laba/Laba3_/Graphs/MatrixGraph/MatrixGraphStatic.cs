@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Laba_.Graphs
+namespace Laba.Graphs.MatrixGraphs
 {
     partial class MatrixGraph
     {

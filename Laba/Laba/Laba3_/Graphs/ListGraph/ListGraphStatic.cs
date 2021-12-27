@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Laba_.Graphs
+namespace Laba.Graphs.ListGraphs
 {
     partial class ListGraph
     {

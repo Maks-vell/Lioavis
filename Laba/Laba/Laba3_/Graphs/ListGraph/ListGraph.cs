@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Laba.Graphs.MatrixGraphs;
 
-
-namespace Laba_.Graphs
+namespace Laba.Graphs.ListGraphs
 {
     partial class ListGraph
     {
@@ -13,8 +13,6 @@ namespace Laba_.Graphs
         }
 
         private List<int> _walkList = new List<int>();
-
-        private bool[] _walkedList;
 
         public ListGraph(MatrixGraph matrixGraph, int size)
         {
@@ -35,63 +33,61 @@ namespace Laba_.Graphs
             }
         }
 
-        public List<int> DeepWalk()
+        public List<int> DeepWalk(int v)
         {
-            _walkedList = new bool[_list.Count];
-            for (int i = 0; i < _list.Count; i++)
-            {
-                Walk(i);
-            }
+            bool[] walkedList = new bool[_list.Count];
+
+            Walk(v-1, walkedList);
+            
             return null;
         }
 
-        private void Walk(int v)
+        private void Walk(int v, bool[] walkedList)
         {
-            _walkedList[v] = true;
+            walkedList[v] = true;
             _walkList.Add(v + 1);
             for (int i = 0; i < _list[v].Count; i++)
             {
-                if (!_walkedList[_list[v][i] - 1])
+                if (!walkedList[_list[v][i] - 1])
                 {
-                    Walk(_list[v][i] - 1);
+                    Walk(_list[v][i] - 1, walkedList);
                 }
             }
         }
 
-
-        public List<int> BreadthFirstSearch()
-        {
-            _walkedList = new bool[_list.Count];
-            for (int i = 0; i < _list.Count; i++)
-            {
-                if (!_walkedList[i])
-                {
-                    UnderBreadthFirstSearch(i);
-                }
-            }
-            return _walkList;
-        }
-
-        private void UnderBreadthFirstSearch(int v)
+        public List<int> BreadthFirstSearch(int startV)
         {
             Queue<int> queue = new Queue<int>();
+            bool[] walkedList = new bool[_list.Count];
+            int v = startV - 1;
 
             queue.Enqueue(v);
-            _walkedList[v] = true;
+            walkedList[v] = true;
+            _walkList.Add(v + 1);
 
             while (queue.Count > 0)
             {
                 v = queue.Dequeue();
-                _walkList.Add(v);
+                if (!walkedList[v])
+                {
+                    _walkList.Add(v + 1);
+                }
                 foreach(var el in _list[v])
                 {
-                    if (!_walkedList[el-1])
+                    if (!walkedList[el-1])
                     {
                         queue.Enqueue(el-1);
-                        _walkedList[v] = true;
                     }
                 }
+                walkedList[v] = true;
             }
+            return _walkList;
+        }
+
+        public List<int> BreadthFirstLengthSearch(int startV)
+        {
+
+            return null;
         }
     }
 }

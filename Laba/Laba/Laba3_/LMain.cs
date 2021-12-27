@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Laba_
+namespace Laba
 {
     class LMain
     {
@@ -31,7 +31,10 @@ namespace Laba_
                         consoleProgram.DeepWalkNonRecurcive();
                         break;
                     case 4:
-                        consoleProgram.UnderBreadthFirstSearch();
+                        consoleProgram.BreadthFirstSearch();
+                        break;
+                    case 5:
+                        consoleProgram.BreadthFirstLengthSearch();
                         break;
                     default:
                         Console.WriteLine("Неизвестная операция ");
