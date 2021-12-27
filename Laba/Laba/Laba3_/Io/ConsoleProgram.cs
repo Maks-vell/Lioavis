@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Laba.Graphs.ListGraphs;
 using Laba.Graphs.MatrixGraphs;
 
-namespace Laba
+namespace Laba.Io
 {
     class ConsoleProgram
     {
@@ -20,21 +20,41 @@ namespace Laba
             Console.WriteLine();
         }
 
+        public int GetOperations()
+        {
+            Console.WriteLine();
+            Console.Write("\t \t \t Введите номер операции: ");
+            return int.Parse(Console.ReadLine());
+        }
+
+        public void UnknowOperation()
+        {
+            Console.WriteLine("Неизвестная операция");
+        }
+
+        public void Exit()
+        {
+            Console.WriteLine();
+            Console.WriteLine("\t \t \t Работа завершена.");
+        }
+
         public void CreateGrahs()
         {
             Console.WriteLine("Введите размер графа: ");
             int size = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             _myMatrixGraph = new MatrixGraph(size);
 
             _myListGraph = new ListGraph(_myMatrixGraph, size);
 
-            Console.WriteLine();
             Console.WriteLine("Граф в матричной форме: ");
             MatrixGraph.Display(_myMatrixGraph);
             Console.WriteLine();
+
             Console.WriteLine("Граф в форме списка: ");
             ListGraph.Display(_myListGraph);
+            Console.WriteLine();
         }
 
 
@@ -55,27 +75,28 @@ namespace Laba
             {
                 return;
             }
+
             Console.WriteLine("Введите исходную вершину: ");
             int v = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             List<int> resultList1 = _myMatrixGraph.DeepWalk(v);
 
-            Console.WriteLine();
-            foreach (var el in resultList1)
+            foreach (int el in resultList1)
             {
                 Console.Write(el + " ");
             }
+            Console.WriteLine();
 
             List<int> resultList2 = _myListGraph.DeepWalk(v);
 
-            Console.WriteLine();
-            foreach (var el in resultList1)
+            foreach (int el in resultList1)
             {
                 Console.Write(el + " ");
             }
         }
 
-        public void DeepWalkNonRecurcive()
+        public void DeepWalkNonRecursive()
         {
             if (CheckNull())
             {
@@ -84,7 +105,7 @@ namespace Laba
 
             List<int> resultList = _myMatrixGraph.DeepWalkNonRecursive();
 
-            foreach (var el in resultList)
+            foreach (int el in resultList)
             {
                 Console.Write(el + " ");
             }
@@ -99,6 +120,7 @@ namespace Laba
 
             Console.WriteLine("Введите исходную вершину: ");
             int v = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -107,31 +129,30 @@ namespace Laba
             TimeSpan timeSpan = sw.Elapsed;
             Console.WriteLine("Time: " + timeSpan.Ticks);
 
-            foreach (var el in resultList)
+            foreach (int el in resultList)
             {
                 Console.Write(el + " ");
             }
+            Console.WriteLine();
+            Console.WriteLine();
 
-            Console.WriteLine();
-            Console.WriteLine();
             resultList = _myListGraph.BreadthFirstSearch(v);
 
-            foreach (var el in resultList)
+            foreach (int el in resultList)
             {
                 Console.Write(el + " ");
             }
+            Console.WriteLine();
+            Console.WriteLine();
 
-            Console.WriteLine();
-            Console.WriteLine();
             Console.WriteLine("qeueueueueu");
-
             sw.Restart();
             resultList = _myMatrixGraph.MyBreadthFirstSearch(v);
             sw.Stop();
             timeSpan = sw.Elapsed;
             Console.WriteLine("Time: " + timeSpan.Ticks);
 
-            foreach (var el in resultList)
+            foreach (int el in resultList)
             {
                 Console.Write(el + " ");
             }
@@ -151,9 +172,17 @@ namespace Laba
             for (int i = 0; i < resultList.Count; i++)
             {
                 int el = resultList[i];
-                Console.WriteLine(i+1 + ": " + el);
+                Console.WriteLine(i + 1 + ": " + el);
             }
+            Console.WriteLine();
 
+            resultList = _myListGraph.BreadthFirstLengthSearch(v);
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                int el = resultList[i];
+                Console.WriteLine(i + 1 + ": " + el);
+            }
             Console.WriteLine();
         }
     }

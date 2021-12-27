@@ -1,4 +1,5 @@
 ﻿using System;
+using Laba.Io;
 
 namespace Laba
 {
@@ -13,9 +14,7 @@ namespace Laba
 
             do
             {
-                Console.WriteLine();
-                Console.Write("\t \t \t Введите номер операции: ");
-                operation = int.Parse(Console.ReadLine());
+                operation = consoleProgram.GetOperations();
 
                 switch (operation)
                 {
@@ -28,7 +27,7 @@ namespace Laba
                         consoleProgram.DeepWalk();
                         break;
                     case 3:
-                        consoleProgram.DeepWalkNonRecurcive();
+                        consoleProgram.DeepWalkNonRecursive();
                         break;
                     case 4:
                         consoleProgram.BreadthFirstSearch();
@@ -37,13 +36,12 @@ namespace Laba
                         consoleProgram.BreadthFirstLengthSearch();
                         break;
                     default:
-                        Console.WriteLine("Неизвестная операция ");
+                        consoleProgram.UnknowOperation();
                         break;
                 }
             } while (operation != 0);
 
-            Console.WriteLine();
-            Console.WriteLine("\t \t \t Работа завершена.");
+            consoleProgram.Exit();
         }
     }
 }

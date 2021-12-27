@@ -37,8 +37,8 @@ namespace Laba.Graphs.ListGraphs
         {
             bool[] walkedList = new bool[_list.Count];
 
-            Walk(v-1, walkedList);
-            
+            Walk(v - 1, walkedList);
+
             return null;
         }
 
@@ -57,6 +57,7 @@ namespace Laba.Graphs.ListGraphs
 
         public List<int> BreadthFirstSearch(int startV)
         {
+            _walkList.Clear();
             Queue<int> queue = new Queue<int>();
             bool[] walkedList = new bool[_list.Count];
             int v = startV - 1;
@@ -72,22 +73,51 @@ namespace Laba.Graphs.ListGraphs
                 {
                     _walkList.Add(v + 1);
                 }
-                foreach(var el in _list[v])
+
+                foreach (var el in _list[v])
                 {
-                    if (!walkedList[el-1])
+                    if (!walkedList[el - 1])
                     {
-                        queue.Enqueue(el-1);
+                        queue.Enqueue(el - 1);
                     }
                 }
+
                 walkedList[v] = true;
             }
+
             return _walkList;
         }
 
         public List<int> BreadthFirstLengthSearch(int startV)
         {
+            List<int> vectorDistance = new List<int>();
+            for (int i = 0; i < _list.Count; i++)
+            {
+                vectorDistance.Add(-1);
+            }
 
-            return null;
+            Queue<int> queue = new Queue<int>();
+            int v = startV - 1;
+
+            queue.Enqueue(v);
+            vectorDistance[v] = 0;
+
+            while (queue.Count > 0)
+            {
+                v = queue.Dequeue();
+
+                for (int i = 0; i < _list[v].Count; i++)
+                {
+                    int el = _list[v][i];
+                    if (vectorDistance[el-1] == -1)
+                    {
+                        queue.Enqueue(el - 1);
+                        vectorDistance[el-1] = vectorDistance[v] + 1;
+                    }
+                }
+            }
+
+            return vectorDistance;
         }
     }
 }
